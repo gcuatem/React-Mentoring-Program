@@ -1,0 +1,4 @@
+Modulo1
+how configure eslint
+is possible use tailwind with react.createelement
+when is ; really required
