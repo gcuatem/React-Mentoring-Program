@@ -7,7 +7,7 @@ import Genres from './Components/Genres/Genres';
 function App() {
   let listOfGenres=['Drama','Horror','Comedy','Suspense','Action'];
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState([listOfGenres[0]]);
+  const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0]);
 
   const handleSearch = (query) => {
     console.log("Searching for:", query);
@@ -36,7 +36,7 @@ function App() {
         <Genres genres={listOfGenres} selected={selectedGenre} onSelect={handleGenreSelection}></Genres>
         <p className='bg-slate-400 m-4'>{selectedGenre}  </p>
       </div>
-
+        
     </div>
   );
 }
