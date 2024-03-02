@@ -15,7 +15,7 @@ const Genres:React.FC<IGenresProps> = ({genres,selected,onSelect}) => {
             className={`inline-block bg-${genre === selected ? 'green' : 'white'} 
                           rounded-lg px-4 py-2 mr-2 mb-2 
                           border ${genre === selected ? 'text-red-500' : 'text-black'} 
-                          ${genre === selected ? 'border-green-600' : 'border-gray-400'}
+                          ${genre === selected ? 'border-green-600' : 'border-blue-400'}
                           hover:bg-green-600 hover:text-white hover:border-green-600 
                           transition duration-300 ease-in-out`}
             >
