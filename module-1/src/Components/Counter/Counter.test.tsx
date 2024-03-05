@@ -16,14 +16,11 @@ describe("Counter Component Tests",()=>{
         user.setup()
         render(<Counter initialValue={initialValue} />);
         const decrementButton = screen.getByRole('button',{name: "Decrement"});
-        await user.click(decrementButton).then(
-            ()=>{
-                initialValue--;
-                const valueElement = screen.getByText(`Counter: ${initialValue}`);
-                expect(valueElement).toBeInTheDocument();
-                expect(valueElement).toHaveTextContent("Counter: 0");
-            }
-        );
+        await user.click(decrementButton);
+        initialValue--;
+        const valueElement = screen.getByText(`Counter: ${initialValue}`);
+        expect(valueElement).toBeInTheDocument();
+        expect(valueElement).toHaveTextContent("Counter: 0");
     });
 
     test("click event on Increment button increments the displayed value",async ()=>{
@@ -31,12 +28,9 @@ describe("Counter Component Tests",()=>{
         user.setup()
         render(<Counter initialValue={initialValue} />);
         const incrementButton = screen.getByRole('button',{name: "Increment"});
-        await user.click(incrementButton).then(
-            ()=>{
-                initialValue++;
-                const valueElement = screen.getByText(`Counter: ${initialValue}`);
-                expect(valueElement).toBeInTheDocument();
-            }
-        );
+        await user.click(incrementButton);
+        initialValue++;
+        const valueElement = screen.getByText(`Counter: ${initialValue}`);
+        expect(valueElement).toBeInTheDocument();
     });
 });

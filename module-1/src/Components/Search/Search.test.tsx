@@ -32,11 +32,9 @@ describe("Search Component Tests", () => {
     );
 
     const input = getByPlaceholderText("Enter your search query...");
-    await user.type(input, "test query").then(async () => {
-      await user.keyboard("[Enter]").then(() => {
-        expect(mockOnChange).toHaveBeenCalledWith("test query");
-      });
-    });
+    await user.type(input, "test query");
+    await user.keyboard("[Enter]");
+    expect(mockOnChange).toHaveBeenCalledWith("test query");
   });
 
   test("renders input with initial value passed in props", () => {

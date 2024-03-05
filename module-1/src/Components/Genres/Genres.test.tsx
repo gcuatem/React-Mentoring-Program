@@ -57,8 +57,8 @@ describe("Genre Component tests", () => {
     const selectedButton = screen.getByRole("button", {
       name: /horror/i,
     });
-    expect(selectedButton).toHaveClass("text-red-500");
-    expect(selectedButton).toHaveClass("border-green-600");
+    
+    expect(selectedButton).toHaveClass("text-red-500", "border-green-600");
   });
 
 });
