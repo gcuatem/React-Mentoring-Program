@@ -6,9 +6,9 @@ export const MovieTile = ({ movie }: IMovieTileProps) => {
   const releaseYear = new Date(movie.releaseDate).getFullYear();
 
   return (
-    <div>
-      <img id="movie-img" className="max-h-96" src={movie.imageUrl}></img>
-      <div className="flex justify-between place-items-center">
+    <div className="bg-slate-950 p-3">
+      <img id="movie-img" className="max-h-80" src={movie.imageUrl}></img>
+      <div className="flex justify-between max-w-48 place-items-center mx-2 my-1">
         <p id="movie-title" className="text-white text-base mt-2">
           {movie.movieName}
         </p>
@@ -19,11 +19,11 @@ export const MovieTile = ({ movie }: IMovieTileProps) => {
           {releaseYear}
         </p>
       </div>
-      <div id="movie-genres" className="mt-2">
+      <div id="movie-genres" className="max-w-48 my-2 mx-2">
         {movie.genres.map((g) => (
           <span
             key={g.id}
-            className="bg-blue-900 rounded-full text-white py-1 px-2 text-xs ml-1"
+            className="bg-green-700 rounded-md text-white  px-2 text-xs ml-1"
           >
             {g.genreName}
           </span>

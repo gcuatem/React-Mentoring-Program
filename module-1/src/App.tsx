@@ -3,6 +3,8 @@ import "./App.css";
 import { Counter } from "./Components/Counter/Counter";
 import { Genres } from "./Components/Genres/Genres";
 import { MovieTile } from "./Components/MovieTile/MovieTile";
+
+import { MovieDetails } from "./Components/MovieDetails/MovieDetails";
 import { Search } from "./Components/Search/Search";
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
       { id: 12, genreName: "Adventure" },
       { id: 16, genreName: "Animation" },
     ],
+    rating: 7.3,
+    duration: "1h 34min",
+    description:
+      "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
   };
 
   const handleSearch = (query: any) => {
@@ -58,8 +64,12 @@ function App() {
         <p className="bg-slate-400 m-4">{selectedGenre} </p>
       </div>
 
-      <div className="bg-slate-900 w-60">
+      <div className=" mb-3">
         <MovieTile movie={movie}></MovieTile>
+      </div>
+
+      <div className="">
+        <MovieDetails movie={movie}></MovieDetails>
       </div>
     </div>
   );

@@ -9,4 +9,7 @@ type Movie = {
   movieName: string;
   releaseDate: string;
   genres: Genre[];
+  rating?: number;
+  duration?: string;
+  description?: string;
 };
