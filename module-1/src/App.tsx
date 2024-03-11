@@ -6,12 +6,14 @@ import { MovieTile } from "./Components/MovieTile/MovieTile";
 
 import { MovieDetails } from "./Components/MovieDetails/MovieDetails";
 import { Search } from "./Components/Search/Search";
+import { SortControl } from "./Components/SortControl/SortControl";
 
 function App() {
   const initialValue = 3;
   let listOfGenres = ["Drama", "Horror", "Comedy", "Suspense", "Action"];
   const [searchResults, setSearchResults] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0]);
+  const [selectedSort, setSelectedSort] = useState("Title");
   let movie: Movie;
   movie = {
     id: 101,
@@ -30,6 +32,8 @@ function App() {
       "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
   };
 
+  let sortValues = ["ReleaseDate", "Title"];
+
   const handleSearch = (query: any) => {
     console.log("Searching for:", query);
     setSearchResults(query);
@@ -38,6 +42,11 @@ function App() {
   const handleGenreSelection = (genre: any) => {
     console.log("Genre selected:", genre);
     setSelectedGenre(genre);
+  };
+
+  const handleSortByChange = (value: string) => {
+    console.log("SortBy selected:", value);
+    setSelectedSort(value);
   };
 
   return (
@@ -68,8 +77,17 @@ function App() {
         <MovieTile movie={movie}></MovieTile>
       </div>
 
-      <div className="">
+      <div>
         <MovieDetails movie={movie}></MovieDetails>
+      </div>
+
+      <div className="bg-slate-800 mt-4">
+        <SortControl
+          sortByDefaultValue="Title"
+          sortByValues={sortValues}
+          onChanges={handleSortByChange}
+        ></SortControl>
+        <p className="bg-slate-400 m-4">{selectedSort} </p>
       </div>
     </div>
   );
