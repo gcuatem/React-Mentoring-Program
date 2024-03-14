@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
-import Genres from "./Genres";
-
+import { describe, expect } from "vitest";
+import { Genres } from "./Genres";
 describe("Genre Component tests", () => {
-  
   afterEach(() => {
     vi.restoreAllMocks();
   });
@@ -57,8 +56,7 @@ describe("Genre Component tests", () => {
     const selectedButton = screen.getByRole("button", {
       name: /horror/i,
     });
-    
+
     expect(selectedButton).toHaveClass("text-red-500", "border-green-600");
   });
-
 });

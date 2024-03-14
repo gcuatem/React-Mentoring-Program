@@ -1,7 +1,7 @@
-import user from "@testing-library/user-event";
 import { render } from "@testing-library/react";
-import Search from "./Search";
-
+import user from "@testing-library/user-event";
+import { describe, expect } from "vitest";
+import { Search } from "./Search";
 describe("Search Component Tests", () => {
   afterEach(() => {
     vi.restoreAllMocks();
