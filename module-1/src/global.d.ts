@@ -3,6 +3,11 @@ type Genre = {
   genreName: string;
 };
 
+type SearchField = {
+  id: number;
+  field: string;
+};
+
 type Movie = {
   id: number;
   imageUrl: string;

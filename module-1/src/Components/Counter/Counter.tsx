@@ -25,6 +25,7 @@ export const Counter = ({ initialValue = 0 }: ICounterProps) => {
         Counter: {count}
       </p>
       <button
+        type="button"
         data-testid="Cy-Counter-Increment"
         className="ml-2 bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded"
         onClick={increment}
@@ -32,6 +33,7 @@ export const Counter = ({ initialValue = 0 }: ICounterProps) => {
         Increment
       </button>
       <button
+        type="button"
         data-testid="Cy-Counter-Decrement"
         className="ml-2 bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded"
         onClick={decrement}

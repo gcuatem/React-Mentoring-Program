@@ -7,32 +7,34 @@ import { MovieTile } from "./Components/MovieTile/MovieTile";
 import { MovieDetails } from "./Components/MovieDetails/MovieDetails";
 import { Search } from "./Components/Search/Search";
 import { SortControl } from "./Components/SortControl/SortControl";
+import { TestData } from "./TestData";
+
+const initialValue = 3;
+let movie: Movie;
+let listOfGenres = TestData.genres;
+let sortValues = TestData.SearchFields;
+
+movie = {
+  id: 101,
+  movieName: "Title",
+  releaseDate: "2004-03-12",
+  imageUrl:
+    "https://image.tmdb.org/t/p/original/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
+  genres: [
+    { id: 28, genreName: "Action" },
+    { id: 12, genreName: "Adventure" },
+    { id: 16, genreName: "Animation" },
+  ],
+  rating: 7.3,
+  duration: "1h 34min",
+  description:
+    "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
+};
 
 function App() {
-  const initialValue = 3;
-  let listOfGenres = ["Drama", "Horror", "Comedy", "Suspense", "Action"];
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0]);
+  const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0].genreName);
   const [selectedSort, setSelectedSort] = useState("Title");
-  let movie: Movie;
-  movie = {
-    id: 101,
-    movieName: "Title",
-    releaseDate: "2004-03-12",
-    imageUrl:
-      "https://image.tmdb.org/t/p/original/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
-    genres: [
-      { id: 28, genreName: "Action" },
-      { id: 12, genreName: "Adventure" },
-      { id: 16, genreName: "Animation" },
-    ],
-    rating: 7.3,
-    duration: "1h 34min",
-    description:
-      "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
-  };
-
-  let sortValues = ["ReleaseDate", "Title"];
 
   const handleSearch = (query: any) => {
     console.log("Searching for:", query);

@@ -15,7 +15,7 @@ interface ISearchProps {
 export const Search = ({ initialSearchQuery, onSearch }: ISearchProps) => {
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
@@ -41,6 +41,7 @@ export const Search = ({ initialSearchQuery, onSearch }: ISearchProps) => {
         className="border py-1.5 pl-1"
       />
       <button
+        type="button"
         className="ml-2 bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded"
         onClick={handleSearch}
       >

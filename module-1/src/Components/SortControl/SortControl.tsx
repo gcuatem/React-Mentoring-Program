@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
 interface ISortControlProps {
-  sortByValues: string[];
+  sortByValues: SearchField[];
   sortByDefaultValue: string;
   onChanges: (val: string) => void;
 }
@@ -29,9 +29,9 @@ export const SortControl = ({
           onChange={handleChange}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  p-1  "
         >
-          {sortByValues.map((i, j) => (
-            <option key={j} value={i}>
-              {i}
+          {sortByValues.map((input) => (
+            <option key={input.id} value={input.field}>
+              {input.field}
             </option>
           ))}
         </select>
