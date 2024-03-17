@@ -24,30 +24,27 @@ export const Genres = ({ genres, selected, onSelect }: IGenresProps) => {
     onSelect(genre);
   };
 
-  console.log(Genres);
   return (
-    <div className="border p-3 m-3">
-      <h3 className="text-lg m-4 font-bold">Genres Component</h3>
+    <div className=" p-3 m-3">
       {genres.map((genre) => (
         <button
           type="button"
           key={genre.id}
           onClick={() => handleGenreSelection(genre.genreName)}
-          className={`inline-block bg-${
-            genre.genreName === selectedGenre ? "green" : "white"
+          className={`inline-block rounded-full font-NotoSansSymbol text-xs px-2  bg-${
+            genre.genreName === selectedGenre ? "bg-custom_pink" : "white"
           } 
-                          rounded-lg px-4 py-2 mr-2 mb-2 
-                          border ${
-                            genre.genreName === selectedGenre
-                              ? "text-red-500"
-                              : "text-black"
-                          } 
-                          ${
-                            genre.genreName === selectedGenre
-                              ? "border-green-600"
-                              : "border-blue-400"
-                          }
-                          hover:bg-green-600 hover:text-white hover:border-green-600 
+          border ${
+            genre.genreName === selectedGenre
+              ? "text-custom_pink"
+              : "text-white"
+          } 
+          ${
+            genre.genreName === selectedGenre
+              ? "border-custom_pink"
+              : "border-slate-700"
+          }
+            hover:bg-custom_black hover:text-white hover:border-white
                           transition duration-300 ease-in-out`}
         >
           {genre.genreName}

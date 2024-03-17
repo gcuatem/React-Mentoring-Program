@@ -1,18 +1,16 @@
 import { useState } from "react";
 import "./App.css";
-import { Counter } from "./Components/Counter/Counter";
+import { Dialog } from "./Components/Dialog/Dialog";
 import { Genres } from "./Components/Genres/Genres";
+import { MovieForm } from "./Components/MovieForm/MovieForm";
 import { MovieTile } from "./Components/MovieTile/MovieTile";
-
-import { MovieDetails } from "./Components/MovieDetails/MovieDetails";
 import { Search } from "./Components/Search/Search";
 import { SortControl } from "./Components/SortControl/SortControl";
 import { TestData } from "./TestData";
 
-const initialValue = 3;
 let movie: Movie;
 let listOfGenres = TestData.genres;
-let sortValues = TestData.SearchFields;
+let sortValues = TestData.SearchFields.slice(0, 5);
 
 movie = {
   id: 101,
@@ -32,13 +30,11 @@ movie = {
 };
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0].genreName);
-  const [selectedSort, setSelectedSort] = useState("Title");
+  const [openDialog, setOpenDialog] = useState(false);
 
   const handleSearch = (query: any) => {
     console.log("Searching for:", query);
-    setSearchResults(query);
   };
 
   const handleGenreSelection = (genre: any) => {
@@ -48,49 +44,56 @@ function App() {
 
   const handleSortByChange = (value: string) => {
     console.log("SortBy selected:", value);
-    setSelectedSort(value);
+  };
+
+  const handleCloseDialog = () => {
+    console.log("CLOSING MODAL");
+    setOpenDialog(false);
   };
 
   return (
-    <div className="container mx-auto p-3">
-      <h1 className="font-bold text-2xl  m-2 text-center ">
-        {" "}
+    <div className="container mx-auto p-3 bg-custom_dark_gray">
+      <h1 className="text-2xl  m-2 text-center text-white font-Montserrat">
         ReactJS Mentor Program
       </h1>
-      <div className="m-5 text-center">
-        <Counter initialValue={initialValue}></Counter>
-      </div>
 
-      <div className="m-5 text-center">
+      <div className="banner flex flex-col justify-between m-5 text-center">
+        <div className="flex justify-end">
+          <button
+            type="button"
+            className="bg-custom_light_gray/70 rounded-lg text-custom_pink my-1 mx-1 py-1 px-1 hover:bg-custom_light_gray/90"
+            onClick={() => setOpenDialog(true)}
+          >
+            +Add Movie
+          </button>
+        </div>
         <Search initialSearchQuery="initial search" onSearch={handleSearch} />
-        <p className="bg-slate-400 m-4">{searchResults} </p>
+        <div className="flex justify-between items-center">
+          <Genres
+            genres={listOfGenres}
+            selected={selectedGenre}
+            onSelect={handleGenreSelection}
+          ></Genres>
+          <SortControl
+            sortByDefaultValue="Title"
+            sortByValues={sortValues}
+            onChanges={handleSortByChange}
+          ></SortControl>
+        </div>
       </div>
 
-      <div className="m-5 text-center">
-        <Genres
-          genres={listOfGenres}
-          selected={selectedGenre}
-          onSelect={handleGenreSelection}
-        ></Genres>
-        <p className="bg-slate-400 m-4">{selectedGenre} </p>
-      </div>
+      <div className="flex justify-between items-center m-5 text-center"></div>
 
       <div className=" mb-3">
         <MovieTile movie={movie}></MovieTile>
       </div>
-
-      <div>
-        <MovieDetails movie={movie}></MovieDetails>
-      </div>
-
-      <div className="bg-slate-800 mt-4">
-        <SortControl
-          sortByDefaultValue="Title"
-          sortByValues={sortValues}
-          onChanges={handleSortByChange}
-        ></SortControl>
-        <p className="bg-slate-400 m-4">{selectedSort} </p>
-      </div>
+      <Dialog
+        openDialog={openDialog}
+        dialogTitle={""}
+        closeCallback={handleCloseDialog}
+      >
+        <MovieForm action={"ADD"} />
+      </Dialog>
     </div>
   );
 }

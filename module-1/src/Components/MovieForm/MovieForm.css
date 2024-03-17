@@ -1,0 +1,11 @@
+.formSettings {
+  width: 900px;
+  height: fit-content;
+}
+
+.formSettings input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(246, 82, 97, 0);
+  position: relative;
+  opacity: 1;
+  cursor: pointer;
+}

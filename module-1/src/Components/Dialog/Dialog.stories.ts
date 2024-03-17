@@ -1,22 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Search } from "./Search";
+import { Dialog } from "./Dialog";
 
 const meta = {
-  title: "Components/Search",
-  component: Search,
+  title: "Components/Dialog",
+  component: Dialog,
   parameters: {
     layout: "centered",
+    backgrounds: {
+      default: "dark",
+    },
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof Search>;
+} satisfies Meta<typeof Dialog>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    initialSearchQuery: "What do you want to watch?",
-    onSearch: () => {},
+    dialogTitle: "Dialog Title",
+    children: "",
   },
 };
