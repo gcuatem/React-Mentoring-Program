@@ -33,6 +33,8 @@ movie = {
 function App() {
   const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0].genreName);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDialogEdit, setOpenDialogEdit] = useState(false);
+  const [openDialogDelete, setOpenDialogDelete] = useState(false);
 
   const handleSearch = (query: any) => {
     console.log("Searching for:", query);
@@ -57,6 +59,16 @@ function App() {
     setOpenDialog(false);
   };
 
+  const handleCloseDialogEdit = () => {
+    console.log("CLOSING EDIT MODAL");
+    setOpenDialogEdit(false);
+  };
+
+  const handleDialogSubmitEdit = () => {
+    console.log("SUBMIT EDIT MODAL");
+    setOpenDialogEdit(false);
+  };
+
   return (
     <div className="container mx-auto p-3 bg-custom_dark_gray">
       <h1 className="text-2xl  m-2 text-center text-white font-Montserrat">
@@ -71,6 +83,13 @@ function App() {
             onClick={() => setOpenDialog(true)}
           >
             +Add Movie
+          </button>
+          <button
+            type="button"
+            className="bg-custom_light_gray/70 rounded-lg text-custom_pink my-1 mx-1 py-1 px-1 hover:bg-custom_light_gray/90"
+            onClick={() => setOpenDialogEdit(true)}
+          >
+            +Edit Movie
           </button>
         </div>
         <Search initialSearchQuery="initial search" onSearch={handleSearch} />
@@ -98,7 +117,14 @@ function App() {
         closeCallback={handleCloseDialog}
         submitCallback={handleDialogSubmit}
       >
-        <MovieForm action={"ADD"} />
+        <MovieForm action={"ADD"} movie={movie} />
+      </Dialog>
+      <Dialog
+        openDialog={openDialogEdit}
+        closeCallback={handleCloseDialogEdit}
+        submitCallback={handleDialogSubmitEdit}
+      >
+        <MovieForm action={"EDIT"} movie={movie} />
       </Dialog>
     </div>
   );
