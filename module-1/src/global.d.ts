@@ -17,4 +17,5 @@ type Movie = {
   rating?: number;
   duration?: string;
   description?: string;
+  movieUrl?: string;
 };

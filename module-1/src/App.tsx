@@ -25,6 +25,7 @@ movie = {
   ],
   rating: 7.3,
   duration: "1h 34min",
+  movieUrl: "https://www.themoviedb.org/movie/1011985-kung-fu-panda-4",
   description:
     "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
 };
@@ -48,6 +49,11 @@ function App() {
 
   const handleCloseDialog = () => {
     console.log("CLOSING MODAL");
+    setOpenDialog(false);
+  };
+
+  const handleDialogSubmit = () => {
+    console.log("SUBMIT MODAL");
     setOpenDialog(false);
   };
 
@@ -89,8 +95,8 @@ function App() {
       </div>
       <Dialog
         openDialog={openDialog}
-        dialogTitle={""}
         closeCallback={handleCloseDialog}
+        submitCallback={handleDialogSubmit}
       >
         <MovieForm action={"ADD"} />
       </Dialog>

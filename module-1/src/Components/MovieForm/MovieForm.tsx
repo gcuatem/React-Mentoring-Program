@@ -1,9 +1,10 @@
 import "./MovieForm.css";
 interface IMovieForm {
   action: string;
+  movie?: Movie;
 }
 
-export const MovieForm = ({ action }: IMovieForm) => {
+export const MovieForm = ({ action, movie }: IMovieForm) => {
   return (
     <div className="formSettings bg-custom_dark_gray  min-w-full">
       <h1 className="ml-5 mb-2 text-white text-2xl font-Montserrat">
@@ -19,6 +20,7 @@ export const MovieForm = ({ action }: IMovieForm) => {
             type="text"
             name="Title"
             id="Title"
+            value={action === "ADD" ? "" : movie?.movieName}
           />
         </div>
 
@@ -34,6 +36,7 @@ export const MovieForm = ({ action }: IMovieForm) => {
             type="date"
             name="release"
             id="releaseDate"
+            value={action === "ADD" ? "" : movie?.releaseDate}
           />
         </div>
 
@@ -49,6 +52,7 @@ export const MovieForm = ({ action }: IMovieForm) => {
             type="text"
             name="url"
             id="movieUrl"
+            value={action === "ADD" ? "" : movie?.movieUrl}
           />
         </div>
 
@@ -61,6 +65,7 @@ export const MovieForm = ({ action }: IMovieForm) => {
             type="text"
             name="rating"
             id="rating"
+            value={action === "ADD" ? "" : movie?.rating}
           />
         </div>
 
@@ -69,7 +74,13 @@ export const MovieForm = ({ action }: IMovieForm) => {
             Genre
           </label>
           <select className="bg-custom_light_gray text-white p-1" id="genre">
-            <option value="Drama">Drama</option>
+            {movie &&
+              movie.genres.map((item) => (
+                <option key={item.id} value={item.genreName}>
+                  {item.genreName}
+                </option>
+              ))}
+            {!movie && <option value="Drama">Drama</option>}
           </select>
         </div>
 
@@ -85,6 +96,7 @@ export const MovieForm = ({ action }: IMovieForm) => {
             type="text"
             name="time"
             id="runtime"
+            value={action === "ADD" ? "" : movie?.duration}
           />
         </div>
 
@@ -99,6 +111,7 @@ export const MovieForm = ({ action }: IMovieForm) => {
             className="bg-custom_light_gray text-white p-1"
             name="overview"
             id="overview"
+            value={action === "ADD" ? "" : movie?.description}
           />
         </div>
       </div>

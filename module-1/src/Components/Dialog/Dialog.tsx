@@ -1,12 +1,14 @@
 import { ReactNode } from "react";
-
-//const mountElement:HTMLElement=document.getElementById("overlays")||<div>;
+import { createPortal } from "react-dom";
+import "./Dialog.css";
+const mountElement: any = document.getElementById("overlays") || <div />;
 
 interface IDialogProps {
   openDialog: boolean;
   dialogTitle?: string;
   children?: ReactNode;
   closeCallback: () => void;
+  submitCallback: () => void;
 }
 
 export const Dialog = ({
@@ -14,15 +16,21 @@ export const Dialog = ({
   dialogTitle,
   children,
   closeCallback,
+  submitCallback,
 }: IDialogProps) => {
   if (!openDialog) return null;
   function handleClose(): void {
     closeCallback();
   }
-  return (
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    submitCallback();
+  }
+  return createPortal(
     <>
-      <div className="overlay-styles"></div>
-      <div className="flex flex-col justify-between bg-custom_dark_gray min-w-40 min-h-32">
+      <div className="fixed left-0 top-0 bg-black bg-opacity-5 w-screen h-screen"></div>
+      <div className="dialog flex flex-col justify-between bg-custom_dark_gray min-w-40 min-h-32">
         <div id="dialogHeader">
           <div className="flex text-white justify-end mb-1">
             <svg
@@ -45,19 +53,26 @@ export const Dialog = ({
             {dialogTitle}
           </h1>
         </div>
-        <div id="dialogBody">{children}</div>
-        <div id="dialogFooter" className="mb-2">
-          <button
-            onClick={() => handleClose()}
-            className="bg-custom_black hover:bg-slate-900 text-custom_pink  border border-custom_pink rounded-md ml-2 py-1 px-2"
-          >
-            Cancel
-          </button>
-          <button className="bg-custom_pink hover:bg-pink-400 text-white  border border-custom_pink rounded-md ml-2 py-1 px-2">
-            Submit
-          </button>
-        </div>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div id="dialogBody">{children}</div>
+          <div id="dialogFooter" className="mb-2">
+            <button
+              type="button"
+              onClick={() => handleClose()}
+              className="bg-custom_black hover:bg-slate-900 text-custom_pink  border border-custom_pink rounded-md ml-2 py-1 px-2"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-custom_pink hover:bg-pink-400 text-white  border border-custom_pink rounded-md ml-2 py-1 px-2"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-    </>
+    </>,
+    mountElement
   );
 };
