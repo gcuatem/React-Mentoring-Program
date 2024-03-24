@@ -34,7 +34,6 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState(listOfGenres[0].genreName);
   const [openDialog, setOpenDialog] = useState(false);
   const [openDialogEdit, setOpenDialogEdit] = useState(false);
-  const [openDialogDelete, setOpenDialogDelete] = useState(false);
 
   const handleSearch = (query: any) => {
     console.log("Searching for:", query);
@@ -98,33 +97,30 @@ function App() {
             genres={listOfGenres}
             selected={selectedGenre}
             onSelect={handleGenreSelection}
-          ></Genres>
+          />
           <SortControl
             sortByDefaultValue="Title"
             sortByValues={sortValues}
             onChanges={handleSortByChange}
-          ></SortControl>
+          />
         </div>
       </div>
 
       <div className="flex justify-between items-center m-5 text-center"></div>
 
       <div className=" mb-3">
-        <MovieTile movie={movie}></MovieTile>
+        <MovieTile movie={movie} />
       </div>
-      <Dialog
-        openDialog={openDialog}
-        closeCallback={handleCloseDialog}
-        submitCallback={handleDialogSubmit}
-      >
-        <MovieForm action={"ADD"} movie={movie} />
+      <Dialog openDialog={openDialog}>
+        <MovieForm title={"ADD MOVIE"} closeCallback={handleCloseDialog} />
       </Dialog>
-      <Dialog
-        openDialog={openDialogEdit}
-        closeCallback={handleCloseDialogEdit}
-        submitCallback={handleDialogSubmitEdit}
-      >
-        <MovieForm action={"EDIT"} movie={movie} />
+
+      <Dialog openDialog={openDialogEdit}>
+        <MovieForm
+          title={"EDIT MOVIE"}
+          movie={movie}
+          closeCallback={handleCloseDialogEdit}
+        />
       </Dialog>
     </div>
   );
