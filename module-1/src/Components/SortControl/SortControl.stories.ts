@@ -21,7 +21,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    sortByValues: ["ReleaseDate", "Title"],
+    sortByValues: [
+      { id: 1, field: "ReleaseDate" },
+      { id: 2, field: "Title" },
+    ],
     sortByDefaultValue: "Title",
     onChanges: () => {},
   },

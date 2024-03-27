@@ -30,19 +30,19 @@ export const Search = ({ initialSearchQuery, onSearch }: ISearchProps) => {
   };
 
   return (
-    <div className="border p-3 m-3">
-      <h3 className="text-lg m-4 font-bold">Search Component</h3>
+    <div className="  p-3 m-3">
+      <h3 className="text-md  font-Montserrat text-white">FIND YOUR MOVIE</h3>
       <input
         type="text"
         value={searchQuery}
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
-        placeholder="Enter your search query..."
-        className="border py-1.5 pl-1"
+        placeholder="What do you want to watch?"
+        className="py-1.5 pl-1 bg-custom_light_gray text-white text-sm w-3/4"
       />
       <button
         type="button"
-        className="ml-2 bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded"
+        className="ml-2 bg-custom_pink hover:bg-pink-800 text-white py-1 px-2 border border-custom_pink rounded-md"
         onClick={handleSearch}
       >
         Search

@@ -1,22 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Search } from "./Search";
+import { MovieForm } from "./MovieForm";
 
 const meta = {
-  title: "Components/Search",
-  component: Search,
+  title: "Components/MovieForm",
+  component: MovieForm,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof Search>;
+} satisfies Meta<typeof MovieForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    initialSearchQuery: "What do you want to watch?",
-    onSearch: () => {},
+    action: "ADD",
   },
 };

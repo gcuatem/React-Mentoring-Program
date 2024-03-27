@@ -5,6 +5,13 @@ export default {
     extend: {
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
+        NotoSansSymbol: ["Noto Sans Symbols 2", "sans-serif"],
+      },
+      colors: {
+        custom_dark_gray: "#424242",
+        custom_light_gray: "#555555",
+        custom_pink: "#F65261",
+        custom_black: "#232323",
       },
     },
   },
